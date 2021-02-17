@@ -23,6 +23,7 @@ jobs:
           image-tag: "alpine:3.7"
           sysdig-secure-token: ${{ secrets.SYSDIG_SECURE_TOKEN }}
           ignore-failed-scan: true
+          inline-scan-image: quay.io/sysdig/secure-inline-scan:2.2
 
       - uses: github/codeql-action/upload-sarif@v1
         if: always()
