@@ -18,12 +18,11 @@ jobs:
     steps:
       - name: Scan image
         id: scan
-        uses: sysdiglabs/scan-action@override-inline-scan-image
+        uses: sysdiglabs/scan-action@fix-inline-scan-2.3-output
         with:
           image-tag: "alpine:3.7"
           sysdig-secure-token: ${{ secrets.SYSDIG_SECURE_TOKEN }}
           ignore-failed-scan: true
-          inline-scan-image: quay.io/sysdig/secure-inline-scan:2.2
 
       - uses: github/codeql-action/upload-sarif@v1
         if: always()
