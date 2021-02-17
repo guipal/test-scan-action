@@ -18,7 +18,7 @@ jobs:
     steps:
       - name: Scan image
         id: scan
-        uses: sysdiglabs/scan-action@v3
+        uses: sysdiglabs/scan-action@fix-inline-scan-2.3-output
         with:
           image-tag: "alpine:3.7"
           sysdig-secure-token: ${{ secrets.SYSDIG_SECURE_TOKEN }}
