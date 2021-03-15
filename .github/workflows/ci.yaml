@@ -28,12 +28,11 @@ jobs:
       #  if: always()
       #  with:
       #    sarif_file: ${{ steps.scan.outputs.sarifReport }}
-
-      - name: Create Dockerfile
-        run: echo "FROM alpine:3.7 >> Dockerfile"
-
+      
       - name: Build the Docker image
-        run: docker build . --file Dockerfile --tag local:latest
+        run: |
+          echo "FROM alpine:3.7" > Dockerfile
+          docker build . --file Dockerfile --tag local:latest
 
       - name: Scan local image
         id: scan-local
