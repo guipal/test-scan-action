@@ -16,13 +16,28 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Scan image
-        id: scan
+      #- name: Scan image
+      #  id: scan
+      #  uses: sysdiglabs/scan-action@v3
+      #  with:
+      #    image-tag: "alpine:3.7"
+      #    sysdig-secure-token: ${{ secrets.SYSDIG_SECURE_TOKEN }}
+      #    ignore-failed-scan: true
+
+      #- uses: github/codeql-action/upload-sarif@v1
+      #  if: always()
+      #  with:
+      #    sarif_file: ${{ steps.scan.outputs.sarifReport }}
+
+      - name: Scan local image
+        id: scan-local
         uses: sysdiglabs/scan-action@v3
         with:
-          image-tag: "alpine:3.7"
+          image-tag: "local:latest"
           sysdig-secure-token: ${{ secrets.SYSDIG_SECURE_TOKEN }}
           ignore-failed-scan: true
+          input-type: docker-daemon
+          run-as-user: root
 
       - uses: github/codeql-action/upload-sarif@v1
         if: always()
