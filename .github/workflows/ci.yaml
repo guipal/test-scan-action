@@ -47,4 +47,3 @@ jobs:
         if: always()
         with:
           sarif_file: ${{ steps.scan-local.outputs.sarifReport }}
-
