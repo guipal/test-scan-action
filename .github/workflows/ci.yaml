@@ -33,6 +33,7 @@ jobs:
           # Sysdig Secure URL (ex: "https://secure-sysdig.com").
           #sysdig-secure-url: https://eu1.app.sysdig.com/
           sysdig-secure-url: https://secure.sysdig.com/
+          extra-parameters: -v
 
       #- uses: github/codeql-action/upload-sarif@v1
 
