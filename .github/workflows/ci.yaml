@@ -55,6 +55,6 @@ jobs:
           sysdig-secure-token: ${{ secrets.SYSDIG_SECURE_TOKEN }}
           input-type: docker-archive
           ignore-failed-scan: true
-          input-path: $(pwd)/image.tar
+          input-path: ${{ env.GITHUB_WORKSPACE }}/image.tar
 
  
