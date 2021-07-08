@@ -41,7 +41,7 @@ jobs:
         id: pull-and-save
         run: |
           docker pull alpine:3.7
-          docker save image.tar
+          docker save alpine:3.7 image.tar
 
       - name: Scan dummy-vuln-app from archive
         id: scan
