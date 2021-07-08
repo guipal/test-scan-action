@@ -56,5 +56,6 @@ jobs:
           input-type: docker-archive
           ignore-failed-scan: true
           input-path: ${{ github.workspace }}/image.tar
+          run-as-user: 1002
 
  
