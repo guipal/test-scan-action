@@ -57,5 +57,11 @@ jobs:
           ignore-failed-scan: true
           input-path: ${{ github.workspace }}/image.tar
           run-as-user: 1002
+        continue-on-error: true
+          
+      - name: post check
+        run: |
+          ls -lh
+
 
  
