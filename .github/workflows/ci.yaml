@@ -38,7 +38,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Pull image
-        id: pull and export
+        id: pull-and-save
         run: |
           docker pull alpine:3.7
           docker save image.tar
