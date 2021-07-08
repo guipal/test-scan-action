@@ -22,7 +22,7 @@ jobs:
         id: scan-
         # You may pin to the exact commit or the version.
         # uses: sysdiglabs/scan-action@e987fddce3e5dd5122fa4af4488fd65cb2b08cd6
-        uses: sysdiglabs/scan-action@v3.0.1
+        uses: sysdiglabs/scan-action@master
         with:
           # Tag of the image to analyse.
           image-tag: registry.access.redhat.com/ubi8/ubi-minimal:8.3-201
