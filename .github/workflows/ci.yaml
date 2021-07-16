@@ -19,7 +19,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Sysdig Secure Inline Scan
-        id: scan-
+        id: scan
         # You may pin to the exact commit or the version.
         # uses: sysdiglabs/scan-action@e987fddce3e5dd5122fa4af4488fd65cb2b08cd6
         uses: sysdiglabs/scan-action@new-execution-mode
@@ -33,6 +33,11 @@ jobs:
           # Sysdig Secure URL (ex: "https://secure-sysdig.com").
           #sysdig-secure-url: https://eu1.app.sysdig.com/
           sysdig-secure-url: https://secure.sysdig.com/
+          
+      - uses: github/codeql-action/upload-sarif@v1
+      with:
+        if: always()
+        sarif_file: ${{ steps.scan.outputs.sarifReport }}     
           
   scan-from-docker-archive:
     runs-on: ubuntu-latest
@@ -57,6 +62,11 @@ jobs:
           input-type: docker-archive
           input-path: ${{ github.workspace }}/image.tar
           run-as-user: 1002
+          
+      - uses: github/codeql-action/upload-sarif@v1
+      with:
+        if: always()
+        sarif_file: ${{ steps.scan.outputs.sarifReport }}          
           
       - name: post check
         run: |
