@@ -42,8 +42,9 @@ jobs:
         run: |
           docker pull alpine:3.7
           docker save alpine:3.7 -o image.tar
+          chmod 0644 image.tar
           pwd
-          ls
+          ls -lh
 
       - name: Scan dummy-vuln-app from archive
         id: scan
@@ -57,7 +58,6 @@ jobs:
           ignore-failed-scan: true
           input-path: ${{ github.workspace }}/image.tar
           run-as-user: 1002
-        continue-on-error: true
           
       - name: post check
         run: |
