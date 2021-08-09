@@ -81,7 +81,7 @@ jobs:
           docker pull alpine:3.6
           who am i
           id
-          ls -l /var/run/docer.sock
+          ls -l /var/run/docker.sock
 
       - name: Scan image from Docker Daemon
         id: scan
@@ -92,5 +92,6 @@ jobs:
           # API token for Sysdig Scanning auth.
           sysdig-secure-token: ${{ secrets.SYSDIG_SECURE_TOKEN }}
           input-type: docker-daemon
+          run-as-user: root
 
  
