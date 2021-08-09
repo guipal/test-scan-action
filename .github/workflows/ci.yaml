@@ -78,7 +78,7 @@ jobs:
       - name: Pull image
         id: pull-and-save
         run: |
-          docker pull alpine:3.6
+          docker pull debian
           who am i
           id
           ls -l /var/run/docker.sock
@@ -88,7 +88,7 @@ jobs:
         uses: sysdiglabs/scan-action@v3
         with:
           # Tag of the image to analyse
-          image-tag: alpine:3.6
+          image-tag: debian
           # API token for Sysdig Scanning auth.
           sysdig-secure-token: ${{ secrets.SYSDIG_SECURE_TOKEN }}
           input-type: docker-daemon
