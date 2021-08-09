@@ -12,7 +12,7 @@ on:
         default: alpine:3.7
 
 jobs:
-  scan-ubi:
+  scan-from-registry-ubi:
     runs-on: ubuntu-latest
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -22,7 +22,7 @@ jobs:
         id: scan
         # You may pin to the exact commit or the version.
         # uses: sysdiglabs/scan-action@e987fddce3e5dd5122fa4af4488fd65cb2b08cd6
-        uses: sysdiglabs/scan-action@new-execution-mode
+        uses: sysdiglabs/scan-action@v3
         with:
           # Tag of the image to analyse.
           image-tag: registry.access.redhat.com/ubi8/ubi-minimal:8.3-201
@@ -51,9 +51,9 @@ jobs:
           pwd
           ls -lh
 
-      - name: Scan dummy-vuln-app from archive
+      - name: Scan imagefrom archive
         id: scan
-        uses: sysdiglabs/scan-action@new-execution-mode
+        uses: sysdiglabs/scan-action@v3
         with:
           # Tag of the image to analyse
           image-tag: sysdiglabs/dummy-vuln-app:latest
@@ -72,5 +72,22 @@ jobs:
         run: |
           ls -lh
 
+  scan-from-docker-daemon:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pull image
+        id: pull-and-save
+        run: |
+          docker pull alpine:3.6
+
+      - name: Scan image from Docker Daemon
+        id: scan
+        uses: sysdiglabs/scan-action@v3
+        with:
+          # Tag of the image to analyse
+          image-tag: alpine:3.6
+          # API token for Sysdig Scanning auth.
+          sysdig-secure-token: ${{ secrets.SYSDIG_SECURE_TOKEN }}
+          input-type: docker-daemon
 
  
