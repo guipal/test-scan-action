@@ -35,8 +35,8 @@ jobs:
           sysdig-secure-url: https://secure.sysdig.com/
           
       - uses: github/codeql-action/upload-sarif@v1
+        if: always()
         with:
-          if: always()
           sarif_file: ${{ steps.scan.outputs.sarifReport }}     
           
   scan-from-docker-archive:
@@ -64,8 +64,8 @@ jobs:
           run-as-user: 1002
           
       - uses: github/codeql-action/upload-sarif@v1
+        if: always()
         with:
-          if: always()
           sarif_file: ${{ steps.scan.outputs.sarifReport }}          
           
       - name: post check
